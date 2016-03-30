@@ -1,0 +1,24 @@
+body {
+	background-image: url(http://static1.squarespace.com/static/53ce954de4b0945af8803fe9/t/54343198e4b0e4aae11b4e90/1412706713316/beers.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+
+
+}
+
+.navbar-custom {
+	background: #F18E1C;
+	border-color: #674C34;
+}
+
+.navbar-default .navbar-brand,
+a.navbar-default.navbar-barand:hover {
+	color: #FFFBB1;
+}
+
+.home-container h1 {
+	font-family: 'Cinzel', serif;
+	font-size: 35px;
+  
+}
