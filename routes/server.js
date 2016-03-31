@@ -4,9 +4,11 @@ var express = require("express"),
 	knex = require("../db/knex"),
 	parsedBody,
 	beerNames,
-	requestUrl = "http://api.brewerydb.com/v2/beers", 
+	requestUrl = "http://api.brewerydb.com/v2/beers?key=";
 	// need to put api key in a .env file
-	apiKey = "?key=5c33009584a06b592c41670c7b7b9bec";
+require('dotenv').config();
+var apiKey = process.env.API_KEY;
+
 
 router.route("/")
 	.get(function(req, res){

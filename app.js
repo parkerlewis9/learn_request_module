@@ -4,6 +4,8 @@ var express = require("express"),
 	morgan = require("morgan"),
 	bodyParser = require("body-parser"),
 	server = require("./routes/server");
+	// dotenv = require('dotenv');
+// dotenv.config();
 
 require("locus");
 app.set("view engine", "jade");
