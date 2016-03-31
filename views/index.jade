@@ -19,6 +19,7 @@ include ./partials/header
 		.col-md-5.col-md-offset-2.favorites-container
 			h1.text-center Favorited Beers
 			div.text-center
+				//- TODO - refactor to use AJAX
 				form(action="/beers?_method=DELETE" method="POST")
 					input#delete-all.btn.btn-danger.btn-md(type="submit", value="Delete All")
 			table.table.table-hover
@@ -28,7 +29,8 @@ include ./partials/header
 							td= favorite.name
 							//- td= favorite.count
 							td
-								form(action="/beers/beer/id?_method=DELETE" method="POST")
+								//- TODO - refactor to use AJAX
+								form(action="/beers/beer/#{favorite.id}?_method=DELETE" method="POST")
 									input.btn.btn-danger.btn-sm#delete-one(type="submit", value="X")
 									//- input.btn.btn-danger.btn-sm#delete-one(type="submit", value="What?")
 												//- Going to need an id somewhere in here.
