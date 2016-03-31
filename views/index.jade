@@ -1,0 +1,26 @@
+include ./partials/header
+
+.container
+	.row
+		.col-md-12.text-center.index-header
+			h1 Choose a Beer to Search
+			h4 or 
+			h1 Check Out Your Favorites
+	.row
+		.col-md-5.beers-container
+			form.text-center(action="/beers/beer" method="GET")
+				input.form-control.text-center#beerSearch(type="text", name="beerSearch", autofocus="true")
+				//- input.btn.btn-warning.btn-sm(type="submit", value="Search")
+			table.table.table-hover
+				tbody.text-center
+					each name in beerNames
+						tr
+							td= name
+		.col-md-5.col-md-offset-2.favorites-container
+			h1 Beers!!
+			h1= beerNames
+
+
+
+
+script(src="/indexScript.js", type="text/javascript")
