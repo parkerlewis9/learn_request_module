@@ -1,46 +1,42 @@
 include partials/header
 
 .container
+	br
+	.row
+		.col-md-12
+			a.btn.btn-primary.btn-sm(href="/beers") Back to Beers
 	.row
 		.col-md-12.text-center
-			//- h1= info.name
-			h1 "633" American Pale Ale 
-			form(action="/beers/favorites?beerName=#{info.name}" method="POST")
+			h1= info.name
+			//- h1 "633" American Pale Ale 
+			- name = encodeURIComponent(info.name)
+			form(action="/beers?beerName=#{name}" method="POST")
 				input.btn.btn-warning.btn-lg(type="submit", value="Favorite")
 
 	.row.show-container
 		.col-md-1
 		.col-md-4
-			//- h4 Description: 
-			//- p #{info.description}
 			h4 Description: 
-			p Our first beer has been aptly named "633" after the Regions telephone exchange for starters. "If I could call a beer home, this would be the one." ~ Win It is a mildly hoppy pale ale using a 2 row, vienna, and munich malts for body,color, and head retention. It is hopped with American west coast hops later in the boil giving it a nice citrus hop flavor and very mild aroma. Slight addition of a roasted caramel malt gives "633" it's signature 'sunset over the harbor glow'.
+			p #{info.description}
+			//- p Our first beer has been aptly named "633" after the Regions telephone exchange for starters. "If I could call a beer home, this would be the one." ~ Win It is a mildly hoppy pale ale using a 2 row, vienna, and munich malts for body,color, and head retention. It is hopped with American west coast hops later in the boil giving it a nice citrus hop flavor and very mild aroma. Slight addition of a roasted caramel malt gives "633" it's signature 'sunset over the harbor glow'.
 
-			//- h4 Alcohol By Volume: 
-			//- p #{info.abv}
 			h4 Alcohol By Volume: 
-			p 6.33
+			p #{info.abv}
+			//- p 6.33
 
-			//- h4 International Bitterness Units: 
-			//- p #{info.ibu}
-			h4 International Bitterness Units:
-			p 25
+			h4 International Bitterness Units: 
+			p #{info.ibu}
+			//- p 25
 		.col-md-2
 		.col-md-4
-			//- h4 Style: 
-			//- p #{info.style.name}
 			h4 Style: 
-			p American-Style Pale Ale
-			//- h4 Style Description: 
-			//- p #{info.style.description}
+			p #{info.style.name}
+			//- p American-Style Pale Ale
+
 			h4 Style Description: 
-
-			p Style Description: American pale ales range from deep golden to copper in color. The style is characterized by fruity, floral and citrus-like American-variety hop character producing medium to medium-high hop bitterness, flavor, and aroma. Note that the "traditional" style of this beer has its origins with certain floral, fruity, citrus-like, piney, resinous, or sulfur-like American hop varietals. One or more of these hop characters is the perceived end, but the perceived hop characters may be a result of the skillful use of hops of other national origins. American pale ales have medium body and low to medium maltiness. Low caramel character is allowable. Fruity-ester flavor and aroma should be moderate to strong. Diacetyl should be absent or present at very low levels. Chill haze is allowable at cold temperatures.
-
-
+			p #{info.style.description}
+			//- p Style Description: American pale ales range from deep golden to copper in color. The style is characterized by fruity, floral and citrus-like American-variety hop character producing medium to medium-high hop bitterness, flavor, and aroma. Note that the "traditional" style of this beer has its origins with certain floral, fruity, citrus-like, piney, resinous, or sulfur-like American hop varietals. One or more of these hop characters is the perceived end, but the perceived hop characters may be a result of the skillful use of hops of other national origins. American pale ales have medium body and low to medium maltiness. Low caramel character is allowable. Fruity-ester flavor and aroma should be moderate to strong. Diacetyl should be absent or present at very low levels. Chill haze is allowable at cold temperatures.
 
 
 
 
-
-p "_________"
