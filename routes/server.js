@@ -36,5 +36,16 @@ router.route("/beers/beer")
 		// })
 		res.render("show", {info: {}})
 	})
+router.route("/beers/favorites")
+	.post(function(req, res){
+		
+	})
 
 module.exports = router;
+
+
+
+
+
+
+

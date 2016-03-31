@@ -5,7 +5,8 @@ include partials/header
 		.col-md-12.text-center
 			//- h1= info.name
 			h1 "633" American Pale Ale 
-			button.btn.btn-warning.btn-lg Favorite
+			form(action="/beers/favorites?beerName=#{info.name}" method="POST")
+				input.btn.btn-warning.btn-lg(type="submit", value="Favorite")
 
 	.row.show-container
 		.col-md-1

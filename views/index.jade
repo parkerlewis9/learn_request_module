@@ -14,20 +14,23 @@ include ./partials/header
 			table#beers.table.table-hover
 				tbody.text-center
 					each name in beerNames
-						tr
+						tr.text-center
 							td= name
 		.col-md-5.col-md-offset-2.favorites-container
 			h1.text-center Favorited Beers
 			div.text-center
-				button#delete-all.btn.btn-danger.btn-md Delete All
+				form(action="/beers?_method=DELETE" method="POST")
+					input#delete-all.btn.btn-danger.btn-md(type="submit", value="Delete All")
 			table.table.table-hover
 				tbody#favorites.text-center
 					each favorite in favorites
 						tr
 							td= favorite.name
 							//- td= favorite.count
-							td 
-								button.btn.btn-danger.btn-sm#delete-one X
+							td
+								form(action="/beers/beer/id?_method=DELETE" method="POST")
+									input.btn.btn-danger.btn-sm#delete-one(type="submit", value="X")
+									//- input.btn.btn-danger.btn-sm#delete-one(type="submit", value="What?")
 												//- Going to need an id somewhere in here.
 
 

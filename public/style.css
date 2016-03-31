@@ -73,7 +73,17 @@ a.navbar-default.navbar-barand:hover {
 }
 
 #delete-all {
-	margin-bottom: 10px
+	margin-bottom: 12px
+}
+
+.aligner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.align-item {
+	margin-top: 10px
 }
 
 
