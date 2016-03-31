@@ -1,6 +1,7 @@
 var express = require("express"),
 	router = express.Router(),
 	request = require("request"),
+	knex = require("../db/knex"),
 	parsedBody,
 	beerNames,
 	requestUrl = "http://api.brewerydb.com/v2/beers", 
@@ -38,7 +39,7 @@ router.route("/beers/beer")
 	})
 router.route("/beers/favorites")
 	.post(function(req, res){
-		
+
 	})
 
 module.exports = router;
