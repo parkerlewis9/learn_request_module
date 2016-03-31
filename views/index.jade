@@ -11,14 +11,24 @@ include ./partials/header
 			form.text-center(action="/beers/beer" method="POST")
 				input.form-control.text-center#beerSearch(type="text", name="beerSearch", autofocus="true")
 				//- input.btn.btn-warning.btn-sm(type="submit", value="Search")
-			table.table.table-hover
+			table#beers.table.table-hover
 				tbody.text-center
 					each name in beerNames
 						tr
 							td= name
 		.col-md-5.col-md-offset-2.favorites-container
-			h1 Beers!!
-			h1= beerNames
+			h1.text-center Favorited Beers
+			div.text-center
+				button#delete-all.btn.btn-danger.btn-md Delete All
+			table.table.table-hover
+				tbody#favorites.text-center
+					each favorite in favorites
+						tr
+							td= favorite.name
+							//- td= favorite.count
+							td 
+								button.btn.btn-danger.btn-sm#delete-one X
+												//- Going to need an id somewhere in here.
 
 
 

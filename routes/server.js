@@ -22,7 +22,7 @@ router.route("/beers")
 		// 	});
 		// 	res.render("index", {beerNames: beerNames});
 		// });
-			res.render("index", {beerNames: []});
+			res.render("index", {beerNames: ["Parker's Beer"], favorites: [{name: "Parker", count: 2}]});
 	});
 router.route("/beers/beer")
 	.post(function(req, res){
