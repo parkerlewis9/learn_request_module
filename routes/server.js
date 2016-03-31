@@ -15,31 +15,39 @@ router.route("/")
 
 router.route("/beers")
 	.get(function(req, res){
-		// request.get(requestUrl + apiKey + "&abv=-10", function(err, response, body){
-		// 	parsedBody = JSON.parse(body);
-		// 	console.log(parsedBody)
-		// 	beerNames = parsedBody.data.map(function(val){
-		// 		return val.name;
-		// 	});
-		// 	res.render("index", {beerNames: beerNames});
-		// });
-			res.render("index", {beerNames: ["Parker's Beer"], favorites: [{name: "Parker", count: 2}]});
+		request.get(requestUrl + apiKey + "&abv=-10", function(err, response, body){
+			parsedBody = JSON.parse(body);
+			console.log(parsedBody)
+			beerNames = parsedBody.data.map(function(val){
+				return val.name;
+			});
+			res.render("index", {beerNames: beerNames, favorites: []});
+		});
+			// res.render("index", {beerNames: ["Parker's Beer"], favorites: [{name: "Parker", count: 2}]});
 	});
 router.route("/beers/beer")
 	.post(function(req, res){
-		// request.get(requestUrl + apiKey + '&name=' + encodeURIComponent(req.body.beerSearch), function(err, response, body){
-		// 	parsedBody = JSON.parse(body)
-		// 	// console.log(req.body)
-		// 	// console.log(response)
-		// 	// console.log(parsedBody.data)
-		// 	res.render("show", {info: parsedBody.data[0]})
+		request.get(requestUrl + apiKey + '&name=' + encodeURIComponent(req.body.beerSearch), function(err, response, body){
+			parsedBody = JSON.parse(body)
+			// console.log(req.body)
+			// console.log(response)
+			// console.log(parsedBody.data)
+			res.render("show", {info: parsedBody.data[0]})
 			
-		// })
-		res.render("show", {info: {}})
-	})
+		})
+		// res.render("show", {info: {}});
+	});
 router.route("/beers/favorites")
+	// TODO - refactor when I add the fav count feature
 	.post(function(req, res){
-
+		var beer = {name: req.query.beerName}
+		knex.insert(beer).into("beers")
+			.then(function(){
+				res.redirect("/beers");
+			})
+			.catch(function(err){
+				console.log(err);
+			});;
 	})
 
 module.exports = router;
