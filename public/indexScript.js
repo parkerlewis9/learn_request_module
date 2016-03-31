@@ -20,5 +20,14 @@ $(document).ready(function(){
 
 
 	// Deleting all beers
-
+	$(".delete-all").on("click", function(e){
+		$.ajax({
+		    url: '/beers',
+		    type: 'DELETE',
+		    dataType: "json",  
+		})
+		.success(function(){
+			$("#favorites tr").fadeOut("fast")
+		});
+	});
 });

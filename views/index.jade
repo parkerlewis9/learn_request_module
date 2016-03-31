@@ -10,7 +10,6 @@ include ./partials/header
 		.col-md-5.beers-container
 			form.text-center(action="/beers/beer" method="POST")
 				input.form-control.text-center#beerSearch(type="text", name="beerSearch", autofocus="true")
-				//- input.btn.btn-warning.btn-sm(type="submit", value="Search")
 			table#beers.table.table-hover
 				tbody.text-center
 					each name in beerNames
@@ -19,9 +18,8 @@ include ./partials/header
 		.col-md-5.col-md-offset-2.favorites-container
 			h1.text-center Favorited Beers
 			div.text-center
-				//- TODO - refactor to use AJAX
-				form(action="/beers?_method=DELETE" method="POST")
-					input#delete-all.btn.btn-danger.btn-md(type="submit", value="Delete All")
+				//- √ TODO - refactor to use AJAX
+				button.btn.btn-danger.btn-md.delete-all Delete All
 			table.table.table-hover
 				tbody#favorites.text-center
 					each favorite in favorites
@@ -29,12 +27,7 @@ include ./partials/header
 							td= favorite.name
 							//- td= favorite.count
 							td
-								//- TODO - refactor to use AJAX
 								button(data-id="#{favorite.id}").btn.btn-danger.btn-sm.delete-one X
-								//- form(action="/beers/#{favorite.id}?_method=DELETE" method="POST")
-									input.btn.btn-danger.btn-sm.delete-one#{favorite.id}(type="submit", value="X")
-									//- input.btn.btn-danger.btn-sm#delete-one(type="submit", value="What?")
-												//- Going to need an id somewhere in here.
 
 
 
