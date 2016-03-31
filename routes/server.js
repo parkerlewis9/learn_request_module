@@ -46,8 +46,17 @@ router.route("/beers")
 	})
 	.delete(function(req, res){
 		knex("beers").del()
-			.then(function(){
-				res.redirect("/beers");
+			.then(function(beers){
+				console.log(beers)
+				res.format({
+					html: function(){
+						res.redirect("/beers");
+					},
+
+					json: function(){
+						res.send({ message: "Yay" });
+					}
+				});
 			})
 			.catch(function(err){
 				console.log(err);
@@ -66,11 +75,21 @@ router.route("/beers/beer")
 	});
 	
 
-router.route("/beers/beer/:id")
+router.route("/beers/:id")
 	.delete(function(req, res){
+		console.log("hello?")
 		knex("beers").where("id", parseInt(req.params.id)).del()
-			.then(function(){
-				res.redirect("/beers");
+			.returning("id")
+			.then(function(id){
+				res.format({
+					html: function(){
+						res.redirect("/beers");
+					},
+
+					json: function(){
+						res.send({ id: id });
+					}
+				});
 			})
 			.catch(function(err){
 				console.log(err);

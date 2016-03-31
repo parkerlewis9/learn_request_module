@@ -30,8 +30,9 @@ include ./partials/header
 							//- td= favorite.count
 							td
 								//- TODO - refactor to use AJAX
-								form(action="/beers/beer/#{favorite.id}?_method=DELETE" method="POST")
-									input.btn.btn-danger.btn-sm#delete-one(type="submit", value="X")
+								button(data-id="#{favorite.id}").btn.btn-danger.btn-sm.delete-one X
+								//- form(action="/beers/#{favorite.id}?_method=DELETE" method="POST")
+									input.btn.btn-danger.btn-sm.delete-one#{favorite.id}(type="submit", value="X")
 									//- input.btn.btn-danger.btn-sm#delete-one(type="submit", value="What?")
 												//- Going to need an id somewhere in here.
 
