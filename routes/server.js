@@ -1,8 +1,10 @@
 var express = require("express"),
 	router = express.Router(),
 	request = require("request"),
+	parsedBody,
+	beerNames,
+	requestUrl = "http://api.brewerydb.com/v2/beers", 
 	// need to put api key in a .env file
-	requestUrl = "http://api.brewerydb.com/v2" 
 	apiKey = "?key=5c33009584a06b592c41670c7b7b9bec";
 
 router.route("/")
@@ -12,18 +14,27 @@ router.route("/")
 
 router.route("/beers")
 	.get(function(req, res){
-		request.get(requestUrl+ "/beers" + apiKey + "&abv=-10", function(err, response, body){
-			var parsedBody = JSON.parse(body);
-			var beerNames = parsedBody.data.map(function(val){
-				return val.name;
-			});
-			res.render("index", {beerNames: beerNames});
-		});
-			// res.render("index", {beerNames: []});
+		// request.get(requestUrl + apiKey + "&abv=-10", function(err, response, body){
+		// 	parsedBody = JSON.parse(body);
+		// 	console.log(parsedBody)
+		// 	beerNames = parsedBody.data.map(function(val){
+		// 		return val.name;
+		// 	});
+		// 	res.render("index", {beerNames: beerNames});
+		// });
+			res.render("index", {beerNames: []});
 	});
 router.route("/beers/beer")
-	.get(function(req, res){
-		res.render("show")
+	.post(function(req, res){
+		// request.get(requestUrl + apiKey + '&name=' + encodeURIComponent(req.body.beerSearch), function(err, response, body){
+		// 	parsedBody = JSON.parse(body)
+		// 	// console.log(req.body)
+		// 	// console.log(response)
+		// 	// console.log(parsedBody.data)
+		// 	res.render("show", {info: parsedBody.data[0]})
+			
+		// })
+		res.render("show", {info: {}})
 	})
 
 module.exports = router;

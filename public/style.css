@@ -1,3 +1,6 @@
+*{
+	font-family: 'Cinzel', serif;
+}
 body {
 	background-image: url(http://static1.squarespace.com/static/53ce954de4b0945af8803fe9/t/54343198e4b0e4aae11b4e90/1412706713316/beers.jpg);
 	background-repeat: no-repeat;
@@ -59,8 +62,15 @@ a.navbar-default.navbar-barand:hover {
 	border-top: 1px solid #6A2C0C;
 }
 
+.beers-container form {
+	margin: 10px;
+}
 
-
+.show-container .col-md-4 {
+	background-color: #CB5909;
+	padding: 20px;
+	border-radius: 5px 5px 50px 50px;
+}
 
 
 
