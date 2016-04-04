@@ -6,7 +6,9 @@ var express = require("express"),
 	beerNames,
 	requestUrl = "http://api.brewerydb.com/v2/beers?key=";
 	// need to put api key in a .env file
-require('dotenv').config();
+if(process.env.NODE_ENV !== "production"){
+	require('dotenv').config();
+}
 var apiKey = process.env.API_KEY;
 
 
