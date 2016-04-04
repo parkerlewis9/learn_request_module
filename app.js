@@ -8,6 +8,7 @@ var express = require("express"),
 // dotenv.config();
 
 require("locus");
+// eval(locus)
 app.set("view engine", "jade");
 app.use(express.static(__dirname + "/public"));
 app.use(morgan("tiny"));

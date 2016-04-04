@@ -10,6 +10,19 @@ require('dotenv').config();
 var apiKey = process.env.API_KEY;
 
 
+function makeRequest(url,apiKey,params){
+	return new Promise(function(resolve,reject){
+		request.get(`${url}${apiKey}${params}`, function(err, response, body){
+			if(err || response.statusCode >= 400){
+				reject(err,response.statusCode);
+			}
+			else {
+				resolve(JSON.parse(body));
+			}
+		});
+	});
+}
+
 router.route("/")
 	.get(function(req, res){
 		res.render("home");
@@ -17,12 +30,13 @@ router.route("/")
 
 router.route("/beers")
 	.get(function(req, res){
-		request.get(requestUrl + apiKey + "&abv=-10", function(err, response, body){
-			parsedBody = JSON.parse(body);
-			beerNames = parsedBody.data.map(function(val){
+
+		makeRequest(requestUrl, apiKey, "&abv=-10")
+		.then(function(body){
+			beerNames = body.data.map(function(val){
 				return val.name;
 			});
-			knex.select("*").from("beers")
+			knex("beers")
 				.then(function(beers){
 					res.render("index", {beerNames: beerNames, favorites: beers});
 					
@@ -30,8 +44,24 @@ router.route("/beers")
 				.catch(function(err){
 					console.log(err);
 				});
+		}).catch(function(err, code){
+			res.send("Status Code: " + code + ": " + err)
 		});
-			// res.render("index", {beerNames: ["Parker's Beer"], favorites: [{name: "Parker", count: 2}]});
+
+		// request.get(requestUrl + apiKey + "&abv=-10", function(err, response, body){
+		// 	parsedBody = JSON.parse(body);
+		// 	beerNames = parsedBody.data.map(function(val){
+		// 		return val.name;
+		// 	});
+		// 	knex("beers")
+		// 		.then(function(beers){
+		// 			res.render("index", {beerNames: beerNames, favorites: beers});
+					
+		// 		})
+		// 		.catch(function(err){
+		// 			console.log(err);
+		// 		});
+		// });
 	})
 	// TODO - refactor when I add the fav count feature
 	.post(function(req, res){
@@ -47,7 +77,6 @@ router.route("/beers")
 	.delete(function(req, res){
 		knex("beers").del()
 			.then(function(beers){
-				console.log(beers)
 				res.format({
 					html: function(){
 						res.redirect("/beers");
@@ -71,13 +100,11 @@ router.route("/beers/beer")
 			res.render("show", {info: parsedBody.data[0]});
 			
 		});
-		// res.render("show", {info: {}});
 	});
 	
 
 router.route("/beers/:id")
 	.delete(function(req, res){
-		console.log("hello?")
 		knex("beers").where("id", parseInt(req.params.id)).del()
 			.returning("id")
 			.then(function(id){
