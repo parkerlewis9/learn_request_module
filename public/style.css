@@ -86,4 +86,10 @@ a.navbar-default.navbar-barand:hover {
 	margin-top: 10px
 }
 
+#beers {
+	color: white;
+}
 
+#beers tr:hover {
+	color: black;
+}
