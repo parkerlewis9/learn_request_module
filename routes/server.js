@@ -25,8 +25,14 @@ function makeRequest(url,apiKey,params){
 	});
 }
 
+function sayHello(req, res, next){
+	console.log("hello");
+	return next();
+}
+
+
 router.route("/")
-	.get(function(req, res){
+	.get(sayHello, function(req, res){
 		res.render("home");
 	});
 

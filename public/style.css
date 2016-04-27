@@ -86,10 +86,12 @@ a.navbar-default.navbar-barand:hover {
 	margin-top: 10px
 }
 
-#beers {
+#beers,
+#favorites {
 	color: white;
 }
 
-#beers tr:hover {
+#beers tr:hover,
+#favorites tr:hover {
 	color: black;
 }
